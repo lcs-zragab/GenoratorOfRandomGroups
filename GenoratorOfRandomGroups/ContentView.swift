@@ -9,25 +9,25 @@ struct NumberEntry: Identifiable {
 struct ContentView: View {
     @State private var upperBound: Int = 100
     @State private var randomNumberEntries: [NumberEntry] = []
-
+    @State var name = ""
     var body: some View {
         VStack {
             List(randomNumberEntries) { entry in
                 VStack(alignment: .leading) {
                     Text("Name: \(entry.name)")
-                    Text("Number: \(entry.number)")
+                    Text("Group: \(entry.number)")
                 }
             }
 
             HStack {
-                Text("Upper Bound:")
+                Text("Number of Groups:")
                 TextField("Enter upper bound", value: $upperBound, formatter: NumberFormatter(), onCommit: {
                     generateRandomNumber()
                 })
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             }
-            TextField("enter person name")
+            TextField("enter person name", text: $name)
 
             Button("Generate Random Number") {
                 generateRandomNumber()
@@ -38,7 +38,7 @@ struct ContentView: View {
     }
 
     private func generateRandomNumber() {
-        let randomName = "Name \(randomNumberEntries.count + 1)"
+        let randomName = name
         let randomNumber = Int.random(in: 1...upperBound)
         let entry = NumberEntry(name: randomName, number: randomNumber)
         randomNumberEntries.append(entry)
@@ -47,6 +47,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(name: "the")
     }
 }
