@@ -7,7 +7,7 @@ struct NumberEntry: Identifiable {
 }
 
 struct ContentView: View {
-    @State private var upperBound: Int = 100
+    @State private var upperBound: Int = 10
     @State private var randomNumberEntries: [NumberEntry] = []
     @State var name = ""
     var body: some View {
@@ -20,7 +20,7 @@ struct ContentView: View {
             }
 
             HStack {
-                Text("Upper Bound:")
+                Text("Number of Grpups:")
                 TextField("Number of Groups", value: $upperBound, formatter: NumberFormatter(), onCommit: {
                     generateRandomGroup()
                 })
@@ -47,6 +47,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(name: "the")
+        ContentView(name: "")
     }
 }
