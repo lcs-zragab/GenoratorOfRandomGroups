@@ -20,27 +20,27 @@ struct ContentView: View {
             }
 
             HStack {
-                Text("Number of Groups:")
-                TextField("Enter upper bound", value: $upperBound, formatter: NumberFormatter(), onCommit: {
-                    generateRandomNumber()
+                Text("Upper Bound:")
+                TextField("Number of Groups", value: $upperBound, formatter: NumberFormatter(), onCommit: {
+                    generateRandomGroup()
                 })
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             }
             TextField("enter person name", text: $name)
 
-            Button("Generate Random Number") {
-                generateRandomNumber()
+            Button("Generate Random group") {
+                generateRandomGroup()
             }
             .padding()
         }
         .padding()
     }
 
-    private func generateRandomNumber() {
-        let randomName = name
+    private func generateRandomGroup() {
+        let Name = name
         let randomNumber = Int.random(in: 1...upperBound)
-        let entry = NumberEntry(name: randomName, number: randomNumber)
+        let entry = NumberEntry(name: Name, number: randomNumber)
         randomNumberEntries.append(entry)
     }
 }
